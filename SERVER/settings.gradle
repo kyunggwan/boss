@@ -1,7 +1,19 @@
+rootProject.name = 'boss-server'
+include 'app'
 
+// Gradle Toolchain 설정: 모든 프로젝트에서 JDK 21 사용
+// Foojay Toolchain Resolver 플러그인으로 자동 JDK 다운로드
 plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
 }
 
-rootProject.name = 'server'
-include('app')
+// Toolchain Management: 모든 빌드 작업에 JDK 21 사용
+toolchainManagement {
+    jvm {
+        javaRepositories {
+            repository('foojay') {
+                resolverClass = org.gradle.toolchains.foojay.FoojayToolchainResolver
+            }
+        }
+    }
+}

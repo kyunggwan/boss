@@ -5,17 +5,12 @@ services:
       dockerfile: Dockerfile
     container_name: spring-boot-server
     ports:
-      - "6060:6000"
+      - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
-      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME}
-      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
       - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQL10Dialect
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
     networks:
       - boss-network
-    env_file:
-      - .env
 
   client:
     build:
@@ -25,11 +20,11 @@ services:
     ports:
       - "5050:5000"
     environment:
-      # 브라우저에서 접근할 때는 호스트 포트 사용
-      - BACKEND_URL=http://localhost:6060
+      # Vite 환경 변수 (브라우저에서 접근할 때는 호스트 포트 사용)
+      - VITE_BACKEND_URL=http://localhost:8080
       # 컨테이너 내부 통신용 (서비스 이름 사용)
       - BACKEND_HOST=server
-      - BACKEND_PORT=6000
+      - BACKEND_PORT=8080
     depends_on:
       - server
     networks:

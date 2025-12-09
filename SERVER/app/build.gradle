@@ -12,10 +12,12 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
     // PostgreSQL 드라이버 (Supabase 사용)
     runtimeOnly 'org.postgresql:postgresql'
-    // MySQL 드라이버 (선택사항, 필요시 주석 해제)
-    // runtimeOnly 'com.mysql:mysql-connector-j'
     
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation libs.junit.jupiter

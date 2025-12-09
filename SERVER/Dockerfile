@@ -24,7 +24,7 @@ COPY --from=builder /home/gradle/project/app/build/libs/app-*.jar app.jar
 # Java 버전 확인용 (선택사항)
 RUN java -version
 
-EXPOSE 6000
+EXPOSE 8080
 
 # JDK 21로 Spring Boot 애플리케이션 실행
 ENTRYPOINT ["java", "-jar", "app.jar"]
