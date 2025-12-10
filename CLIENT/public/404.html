@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOSS 레이드</title>
+    <script>
+        // GitHub Pages에서 SPA 라우팅을 지원하기 위한 리다이렉트
+        // 404.html은 GitHub Pages가 존재하지 않는 경로를 처리할 때 사용됨
+        // 모든 경로를 index.html로 리다이렉트하여 React Router가 처리하도록 함
+        
+        const path = window.location.pathname;
+        const base = '/boss/';
+        
+        // 현재 경로에서 base를 제거하고 index.html로 리다이렉트
+        // 쿼리 스트링과 해시는 유지
+        const redirectPath = base + 'index.html' + window.location.search + window.location.hash;
+        window.location.replace(redirectPath);
+    </script>
+</head>
+<body>
+    <div>리다이렉트 중...</div>
+</body>
+</html>
+
