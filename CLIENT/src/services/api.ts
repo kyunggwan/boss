@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 // 공통 axios 인스턴스 생성
-const getBackendUrl = (): string => {
-  return import.meta.env.VITE_BACKEND_URL || (window as any).BACKEND_URL || 'http://localhost:8080';
+export const getBackendUrl = (): string => {
+  const url = import.meta.env.VITE_BACKEND_URL || (window as any).BACKEND_URL || 'http://localhost:8080';
+  return url;
 };
 
 // 개발 환경에서는 Vite 프록시 사용 (CORS 방지), 프로덕션에서는 직접 URL 사용
