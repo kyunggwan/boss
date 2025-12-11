@@ -61,7 +61,6 @@ const BossListPage: React.FC<BossListPageProps> = ({ user, onLogout }) => {
 
     // 보스 목록 업데이트 구독
     const unsubscribe = websocketService.subscribe('/topic/bosses/today', (data: any) => {
-      console.log('보스 목록 업데이트 수신:', data);
       // 서버에서 받은 데이터로 상태 업데이트
       if (data && data.bosses) {
         setBosses(data.bosses);
@@ -69,7 +68,6 @@ const BossListPage: React.FC<BossListPageProps> = ({ user, onLogout }) => {
     });
 
     wsSubscriptionRef.current = unsubscribe;
-    console.log('WebSocket 구독 완료: /topic/bosses/today');
   };
 
   const handleEnterRoom = (roomId: number) => {
@@ -88,18 +86,18 @@ const BossListPage: React.FC<BossListPageProps> = ({ user, onLogout }) => {
       if (data.success) {
         setShowCreateModal(false);
         setError('');
-        // 방 생성 성공 시 목록 강제 새로고침 (캐시 무효화)
+        // 레이드 생성 성공 시 목록 강제 새로고침 (캐시 무효화)
         // WebSocket을 통해 자동으로 목록이 업데이트됨
         await loadBosses(true);
       } else {
-        const errorMsg = data.error || data.message || '방 생성에 실패했습니다.';
+        const errorMsg = data.error || data.message || '레이드 생성에 실패했습니다.';
         setError(errorMsg);
       }
     } catch (err: any) {
       const errorMsg = err.response?.data?.error 
         || err.response?.data?.message 
         || err.message 
-        || '방 생성 중 오류가 발생했습니다.';
+        || '레이드 생성 중 오류가 발생했습니다.';
       setError(errorMsg);
     }
   };
@@ -125,6 +123,9 @@ const BossListPage: React.FC<BossListPageProps> = ({ user, onLogout }) => {
   return (
     <div className="boss-list-container">
       <div className="header">
+        <div className="header-title">
+          <h1>개화 레이드</h1>
+        </div>
         <div className="header-actions">
           <button
             className="btn-completed"
@@ -142,14 +143,14 @@ const BossListPage: React.FC<BossListPageProps> = ({ user, onLogout }) => {
         <div className="channels-section">
           <div className="channels-header">
             <div className="channels-header-left">
-              <h2>레이드 방 목록</h2>
+              <h2>레이드  목록</h2>
             </div>
             <div className="channels-header-actions">
               <button
                 className="btn-add"
                 onClick={() => setShowCreateModal(true)}
               >
-                + 새 레이드 방 생성
+                + 새 레이드 생성
               </button>
             </div>
           </div>
@@ -159,8 +160,8 @@ const BossListPage: React.FC<BossListPageProps> = ({ user, onLogout }) => {
             <p style={{ color: 'red' }}>{error}</p>
           ) : bosses.length === 0 ? (
             <div className="no-bosses">
-              <p>오늘의 보스 레이드 방이 없습니다.</p>
-              <p>위의 "새 레이드 방 생성" 버튼을 눌러 방을 생성해주세요.</p>
+              <p>오늘의 보스 레이드가 없습니다.</p>
+              <p>위의 "새 레이드 생성" 버튼을 눌러 레이드를 생성해주세요.</p>
             </div>
           ) : (
             <div className="boss-list">
@@ -201,7 +202,7 @@ const BossListPage: React.FC<BossListPageProps> = ({ user, onLogout }) => {
                       </div>
                     ))
                   ) : (
-                    <p className="no-rooms">방이 없습니다. 위의 "방 생성" 버튼을 눌러주세요.</p>
+                    <p className="no-rooms">레이드가 없습니다. 위의 "새 레이드 생성" 버튼을 눌러주세요.</p>
                   )}
                 </div>
                </div>
@@ -211,14 +212,14 @@ const BossListPage: React.FC<BossListPageProps> = ({ user, onLogout }) => {
         </div>
       </div>
 
-      {/* 방 생성 모달 */}
+      {/* 레이드 생성 모달 */}
       {showCreateModal && (
           <div className="modal-overlay" onClick={() => {
             setShowCreateModal(false);
             setError('');
           }}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <h2>🐉 레이드 방 생성</h2>
+              <h2>🐉 레이드 생성</h2>
               <div className="form-group">
                 <label htmlFor="bossType">레이드 종류</label>
                 <select

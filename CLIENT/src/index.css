@@ -131,13 +131,25 @@ body {
   cursor: not-allowed;
 }
 
+.discord-icon {
+  margin-right: 8px;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
 .btn-discord {
   background-color: #5865f2;
   color: white;
 }
 
-.btn-discord:hover {
+.btn-discord:hover:not(:disabled) {
   background-color: #4752c4;
+}
+
+.btn-discord:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* 보스 목록 페이지 */
@@ -145,6 +157,42 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+}
+
+.boss-list-container .header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.boss-list-container .header-title {
+  flex: 0 0 auto;
+}
+
+.boss-list-container .header-title h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #212529;
+}
+
+.boss-list-container .header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 12px 20px;
+}
+
+.boss-list-container .header-title {
+  flex: 0 0 auto;
+}
+
+.boss-list-container .header-title h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #212529;
 }
 
 .header {
