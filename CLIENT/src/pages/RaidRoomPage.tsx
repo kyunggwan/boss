@@ -732,15 +732,15 @@ const RaidRoomPage: React.FC<RaidRoomPageProps> = ({ user }) => {
                 <div className="boss-color-legend">
                   <span className="legend-item">
                     <span className="legend-color gray"></span>
-                    <span className="legend-text">회색: 빈방</span>
+                    <span className="legend-text">회색: 정보없음</span>
                   </span>
                   <span className="legend-item">
                     <span className="legend-color green"></span>
-                    <span className="legend-text">녹색: CCTV 1~2</span>
+                    <span className="legend-text">녹색: 빈방</span>
                   </span>
                   <span className="legend-item">
                     <span className="legend-color yellow"></span>
-                    <span className="legend-text">노란색: 2~5</span>
+                    <span className="legend-text">노란색: CCTV 1~2</span>
                   </span>
                   <span className="legend-item">
                     <span className="legend-color orange"></span>
