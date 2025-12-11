@@ -159,6 +159,23 @@ body {
   padding: 20px;
 }
 
+.boss-list-container .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.boss-list-container .header-title {
+  flex: 0 0 auto;
+}
+
+.boss-list-container .header-title h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #212529;
+}
+
 .header {
   display: flex;
   justify-content: flex-end;
