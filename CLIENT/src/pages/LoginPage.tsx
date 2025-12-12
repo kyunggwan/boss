@@ -122,32 +122,38 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
         </button>
       </div>
 
-      {isServerAlive !== null && (
-        <div className="server-status-box">
-          <div className="server-status-header">
-            <span className={`server-status-indicator ${isServerAlive ? 'alive' : 'sleep'}`}></span>
-            <span className="server-status-title">서버 상태</span>
-          </div>
-          <div className="server-status-description">
-            {isServerAlive ? (
-              <>
-                <p className="status-text status-online">🟢 즉시 사용 가능</p>
-                <p className="status-detail">서버가 정상적으로 실행 중입니다.</p>
-              </>
-            ) : (
-              <>
-                <p className="status-text status-offline">🔄 서버 켜는 중...</p>
-                <p className="status-detail">
-                  무료 서버 사용 중으로, 사용자가 없으면 자동으로 sleep됩니다.
-                  <br />
-                  서버를 자동으로 깨우는 중입니다. 2~3분 내에 준비됩니다.
-                </p>
-                <div className="loading-spinner"></div>
-              </>
-            )}
-          </div>
+      <div className="server-status-box">
+        <div className="server-status-header">
+          <span className={`server-status-indicator ${
+            isServerAlive === null ? 'checking' : 
+            isServerAlive ? 'alive' : 'sleep'
+          }`}></span>
+          <span className="server-status-title">서버 상태</span>
         </div>
-      )}
+        <div className="server-status-description">
+          {isServerAlive === null ? (
+            <>
+              <p className="status-text status-checking">🔄 서버 상태 확인 중...</p>
+              <p className="status-detail">서버 상태를 확인하고 있습니다.</p>
+            </>
+          ) : isServerAlive ? (
+            <>
+              <p className="status-text status-online">🟢 즉시 사용 가능</p>
+              <p className="status-detail">서버가 정상적으로 실행 중입니다.</p>
+            </>
+          ) : (
+            <>
+              <p className="status-text status-offline">🔄 서버 켜는 중...</p>
+              <p className="status-detail">
+                무료 서버 사용 중으로, 사용자가 없으면 자동으로 sleep됩니다.
+                <br />
+                서버를 자동으로 깨우는 중입니다. 2~3분 내에 준비됩니다.
+              </p>
+              <div className="loading-spinner"></div>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
