@@ -16,7 +16,8 @@ export const apiClient = axios.create({
   headers: {
     'Content-Type': 'application/json'
   },
-  withCredentials: true // 세션 쿠키 포함
+  withCredentials: true, // 세션 쿠키 포함
+  timeout: 5000 // 5초 타임아웃 (health check 실패 감지용)
 });
 
 export const getBackendUrlForRedirect = (): string => {

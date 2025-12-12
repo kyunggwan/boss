@@ -21,7 +21,6 @@ export const healthCheck = async (): Promise<boolean> => {
     return true;
   } catch (error) {
     // 에러가 발생해도 조용히 처리 (서버가 sleep 상태일 수 있으므로)
-    console.debug('Health check failed:', error);
     return false;
   }
 };
