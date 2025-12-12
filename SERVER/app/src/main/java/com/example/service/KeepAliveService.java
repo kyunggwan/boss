@@ -28,15 +28,15 @@ public class KeepAliveService {
     }
     
     /**
-     * 10초마다 서버의 health check 엔드포인트를 호출하여 서버를 활성 상태로 유지합니다.
-     * fixedRate = 10000ms = 10초 (테스트용, 이후 10분으로 변경 예정)
+     * 10분마다 서버의 health check 엔드포인트를 호출하여 서버를 활성 상태로 유지합니다.
+     * fixedRate = 300000ms = 5분
      */
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 300000)
     public void keepAlive() {
         try {
             String healthUrl = "http://localhost:" + serverPort + "/api/auth/health";
             restTemplate.getForObject(healthUrl, String.class);
-            logger.info("Keep-alive health check SUCCESS");
+            logger.debug("Keep-alive health check SUCCESS");
         } catch (Exception e) {
             logger.warn("Keep-alive health check FAILED: {}", e.getMessage());
         }
