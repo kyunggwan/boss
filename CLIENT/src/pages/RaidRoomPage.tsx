@@ -380,7 +380,8 @@ const RaidRoomPage: React.FC<RaidRoomPageProps> = ({ user }) => {
     exampleImageLabel.style.cssText = 'font-size: 12px; color: #666; margin-bottom: 8px; font-weight: 500;';
     
     const exampleImage = document.createElement('img');
-    exampleImage.src = '/channel-example.png';
+    // Vite의 base URL을 사용하여 이미지 경로 설정
+    exampleImage.src = `${import.meta.env.BASE_URL}channel-example.png`;
     exampleImage.alt = '채널 목록 예시';
     exampleImage.style.cssText = 'max-width: 100%; max-height: 250px; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);';
     exampleImage.onerror = () => {
