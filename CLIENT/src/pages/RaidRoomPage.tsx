@@ -1193,8 +1193,11 @@ const RaidRoomPage: React.FC<RaidRoomPageProps> = ({ user }) => {
               })
             )}
           </div>
-          {/* 참석 예정 명단 */}
-          <div className="participants-section">
+        </div>
+        {/* 인원 섹션 */}
+        <div className="users-info-section">
+          {/* 참석 예정 명단 - 주석처리 (기능 숨김) */}
+          {/* <div className="participants-section">
             <div className="participants-header">
               <h3>참석 예정 명단 ({roomData.participants?.length || 0}명)</h3>
               {!roomData.isCompleted && user && user.id && (
@@ -1227,7 +1230,7 @@ const RaidRoomPage: React.FC<RaidRoomPageProps> = ({ user }) => {
                 <p>참석 예정 명단이 없습니다.</p>
               </div>
             )}
-          </div>
+          </div> */}
           
           {/* 현재 접속한 사용자 목록 (완료된 레이드가 아닐 때만 표시) */}
           {!roomData.isCompleted && (
@@ -1256,7 +1259,6 @@ const RaidRoomPage: React.FC<RaidRoomPageProps> = ({ user }) => {
               )}
             </div>
           )}
-          
         </div>
       </div>
     </div>
